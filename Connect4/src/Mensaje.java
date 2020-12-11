@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Event;
 import java.awt.Frame;
-import java.awt.Graphics;
+//import java.awt.Graphics;
 import java.awt.Label;
 
 public class Mensaje extends Dialog{
@@ -21,10 +21,10 @@ public class Mensaje extends Dialog{
                 add("South",aceptar);
     }
     
-    public void paint (Graphics g){
+    /*public void paint (Graphics g){
                 g.setColor (Color.white);
                 g.drawString (cad,50,50);
-    }
+    }*/
     
     public boolean action (Event evt, Object obj){
         if(evt.target == aceptar){
