@@ -9,6 +9,7 @@ public class Juego extends Frame implements MouseListener {
     JButton Empezar = new JButton("Empezar");
     JButton Salir = new JButton("Salir");
     int jmaximo, imaximo;
+    boolean inicioDelJuego = false;
     int[][] matriz;
     boolean ganador = false, prioridad = false, hacer = false;
     int ig, jg;
@@ -20,7 +21,6 @@ public class Juego extends Frame implements MouseListener {
         imaximo = 9;
         jmaximo = 10;
         setLayout(new GridLayout(20, 5));
-        addMouseListener(this);
         Empezar.addMouseListener(this);
         Salir.addMouseListener(this);
         PanelPrincipal.add(Empezar);
@@ -31,7 +31,6 @@ public class Juego extends Frame implements MouseListener {
          * we) { System.exit(0); } });
          */
     }
-
 
     public void colocar(int fila) {
         Thread tiempo = new Thread();
@@ -309,8 +308,6 @@ public class Juego extends Frame implements MouseListener {
             }
     }
 
-    
-
     public void EmpezarTablero() {
         Graphics g = getGraphics();
         int x;
@@ -345,7 +342,7 @@ public class Juego extends Frame implements MouseListener {
     }
 
     public void mousePressed(MouseEvent me) {
-        int z; 
+        int z;
         z = me.getX();
         if (ganador != true) {
             z = (z - 10) / 90;
@@ -358,6 +355,11 @@ public class Juego extends Frame implements MouseListener {
 
         if (me.getSource() == Empezar) {
             EmpezarTablero();
+            if (!inicioDelJuego) {
+                addMouseListener(this);
+                inicioDelJuego=true;
+            }
+
         }
         if (me.getSource() == Salir) {
             Salir();
