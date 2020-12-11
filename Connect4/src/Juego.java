@@ -5,9 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.*;
 
 public class Juego extends Frame implements MouseListener {
-    JButton Nivel1 = new JButton("Nivel 1");
-    JButton Nivel2 = new JButton("Nivel 2");
-    JButton Nivel3 = new JButton("Nivel 3");
+    private static final long serialVersionUID = 1L;
+    JButton Empezar = new JButton("Empezar");
     JButton Salir = new JButton("Salir");
     int jmaximo, imaximo;
     int[][] matriz;
@@ -22,13 +21,9 @@ public class Juego extends Frame implements MouseListener {
         jmaximo = 10;
         setLayout(new GridLayout(20, 5));
         addMouseListener(this);
-        Nivel1.addMouseListener(this);
-        Nivel2.addMouseListener(this);
-        Nivel3.addMouseListener(this);
+        Empezar.addMouseListener(this);
         Salir.addMouseListener(this);
-        PanelPrincipal.add(Nivel1);
-        PanelPrincipal.add(Nivel2);
-        PanelPrincipal.add(Nivel3);
+        PanelPrincipal.add(Empezar);
         PanelPrincipal.add(Salir);
         add(PanelPrincipal);
         /*
@@ -37,13 +32,6 @@ public class Juego extends Frame implements MouseListener {
          */
     }
 
-    public boolean getGanador() {
-        return ganador;
-    }
-
-    public boolean getPrioridad() {
-        return prioridad;
-    }
 
     public void colocar(int fila) {
         Thread tiempo = new Thread();
@@ -321,39 +309,9 @@ public class Juego extends Frame implements MouseListener {
             }
     }
 
-    public void Nivel1() {
-        Graphics g = getGraphics();
-        int x;
-        int y;
+    
 
-        ig = -3;
-        jg = -3;
-        hacer = false;
-        ganador = false;
-        prioridad = false;
-
-        System.out.println("Nivel1");
-        g.setColor(Color.cyan);
-        g.fillRect(1, 1, 950, 790);
-        matriz = new int[7][8];
-        imaximo = 7;
-        jmaximo = 8;
-        g.setColor(Color.white);
-        g.fillRect(1, 1, 950, 50);
-        for (int x1 = 7; x1 > 0; x1--) {
-            g.fillOval((7 * 90) + 20, (x1 * 65) + 100, 60, 60);
-        }
-
-        for (x = 0; x < 8; x++) {
-            for (y = 1; y < 8; y++) {
-                g.fillOval((x * 90) + 20, (y * 65) + 100, 60, 60);
-                matriz[x][y] = 0;
-            }
-        }
-
-    }
-
-    public void Nivel2() {
+    public void EmpezarTablero() {
         Graphics g = getGraphics();
         int x;
         int y;
@@ -362,37 +320,6 @@ public class Juego extends Frame implements MouseListener {
         hacer = false;
         ganador = false;
         prioridad = true;
-
-        System.out.println("Nivel2");
-        g.setColor(Color.cyan);
-        g.fillRect(1, 1, 950, 790);
-
-        g.setColor(Color.white);
-        g.fillRect(1, 1, 950, 50);
-        matriz = new int[8][9];
-        imaximo = 8;
-        jmaximo = 9;
-        for (int x1 = 8; x1 > 0; x1--) {
-            g.fillOval((8 * 90) + 20, (x1 * 65) + 100, 60, 60);
-        }
-        for (x = 0; x < 8; x++) {
-            for (y = 1; y < 9; y++) {
-                g.fillOval((x * 90) + 20, (y * 65) + 100, 60, 60);
-                matriz[x][y] = 0;
-            }
-        }
-    }
-
-    public void Nivel3() {
-        Graphics g = getGraphics();
-        int x;
-        int y;
-        ig = -3;
-        jg = -3;
-        hacer = false;
-        ganador = false;
-        prioridad = true;
-        System.out.println("Nivel3");
         g.setColor(Color.cyan);
         g.fillRect(1, 1, 950, 690);
 
@@ -418,7 +345,7 @@ public class Juego extends Frame implements MouseListener {
     }
 
     public void mousePressed(MouseEvent me) {
-        int z;
+        int z; 
         z = me.getX();
         if (ganador != true) {
             z = (z - 10) / 90;
@@ -428,14 +355,9 @@ public class Juego extends Frame implements MouseListener {
             mensaje.setLocation(300, 10);
             mensaje.setVisible(true);
         }
-        if (me.getSource() == Nivel1) {
-            Nivel1();
-        }
-        if (me.getSource() == Nivel2) {
-            Nivel2();
-        }
-        if (me.getSource() == Nivel3) {
-            Nivel3();
+
+        if (me.getSource() == Empezar) {
+            EmpezarTablero();
         }
         if (me.getSource() == Salir) {
             Salir();
