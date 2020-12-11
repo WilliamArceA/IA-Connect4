@@ -6,6 +6,6 @@ public class App {
         a.pack();
         a.setSize(950,790);
         a.setResizable(false);
-        a.show();
+        a.setVisible(true);
     }
 }
