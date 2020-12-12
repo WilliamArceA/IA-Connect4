@@ -296,10 +296,10 @@ public class Juego extends Frame implements MouseListener {
         int x;
         int y;
         g.setColor(Color.CYAN);
-        g.fillRect(1, 1, 950, 790);
+        g.fillRect(1, 1, 640, 560);
 
         g.setColor(Color.white);
-        g.fillRect(1, 1, 950, 55);
+        g.fillRect(1, 1, 640, 55);
 
         for (x = 0; x < 9; x++)
             for (y = 1; y < 10; y++) {
