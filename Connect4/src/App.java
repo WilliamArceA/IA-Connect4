@@ -4,8 +4,9 @@ public class App {
     {
         Juego a=new Juego();
         a.pack();
-        a.setSize(950,790);
+        a.setSize(640,560);
         a.setResizable(false);
+        a.setLocationRelativeTo(null);
         a.setVisible(true);
     }
 }

@@ -323,8 +323,8 @@ public class Juego extends Frame implements MouseListener {
         g.setColor(Color.white);
         g.fillRect(1, 1, 950, 50);
         matriz = new int[9][10];
-        imaximo = 9;
-        jmaximo = 10;
+        imaximo = 6;
+        jmaximo = 7;
         for (int x1 = 9; x1 > 0; x1--) {
             g.fillOval((9 * 90) + 20, (x1 * 65) + 100, 60, 60);
         }
