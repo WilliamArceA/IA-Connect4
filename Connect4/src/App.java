@@ -4,7 +4,7 @@ public class App {
     {
         Juego a=new Juego();
         a.pack();
-        a.setSize(840,480);
+        a.setSize(640,680);
         a.setResizable(false);
         a.setVisible(true);
     }

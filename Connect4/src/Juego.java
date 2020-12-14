@@ -293,18 +293,19 @@ public class Juego extends Frame implements MouseListener {
     }
 
     public void paint(Graphics g) {
-        int x;
-        int y;
+
         g.setColor(Color.CYAN);
-        g.fillRect(1, 1, 950, 790);
+        g.fillRect(1, 1, 640, 680);
 
         g.setColor(Color.white);
-        g.fillRect(1, 1, 950, 55);
-
-        for (x = 0; x < 6; x++)
-            for (y = 1; y < 7; y++) {
-                g.fillOval((x * 90) + 20, (y * 65) + 100, 60, 60);
-                matriz[x][y] = 0;
+        g.fillRect(1, 1, 640, 50);
+        for (int x1 = 6; x1 > 0; x1--) {
+            g.fillOval((6 * 90) + 20, (x1 * 65) + 100, 60, 60);
+        }
+        for (int i = 0; i < imaximo; i++)
+            for (int j = 1; j < jmaximo; j++) {
+                g.fillOval((i * 90) + 20, (j * 65) + 100, 60, 60);
+                matriz[i][j] = 0;
             }
     }
 
@@ -318,10 +319,10 @@ public class Juego extends Frame implements MouseListener {
         ganador = false;
         prioridad = true;
         g.setColor(Color.cyan);
-        g.fillRect(1, 1, 950, 690);
+        g.fillRect(1, 1, 640, 680);
 
         g.setColor(Color.white);
-        g.fillRect(1, 1, 950, 50);
+        g.fillRect(1, 1, 640, 50);
         matriz = new int[6][7];
         imaximo = 6;
         jmaximo = 7;
@@ -357,7 +358,7 @@ public class Juego extends Frame implements MouseListener {
             EmpezarTablero();
             if (!inicioDelJuego) {
                 addMouseListener(this);
-                inicioDelJuego=true;
+                inicioDelJuego = true;
             }
 
         }
