@@ -17,9 +17,9 @@ public class Juego extends Frame implements MouseListener {
 
     Juego() {
         super("Conecta cuatro");
-        matriz = new int[9][10];
-        imaximo = 9;
-        jmaximo = 10;
+        matriz = new int[6][7];
+        imaximo = 6;
+        jmaximo = 7;
         setLayout(new GridLayout(20, 5));
         Empezar.addMouseListener(this);
         Salir.addMouseListener(this);
@@ -301,8 +301,8 @@ public class Juego extends Frame implements MouseListener {
         g.setColor(Color.white);
         g.fillRect(1, 1, 950, 55);
 
-        for (x = 0; x < 9; x++)
-            for (y = 1; y < 10; y++) {
+        for (x = 0; x < 6; x++)
+            for (y = 1; y < 7; y++) {
                 g.fillOval((x * 90) + 20, (y * 65) + 100, 60, 60);
                 matriz[x][y] = 0;
             }
@@ -322,13 +322,13 @@ public class Juego extends Frame implements MouseListener {
 
         g.setColor(Color.white);
         g.fillRect(1, 1, 950, 50);
-        matriz = new int[9][10];
-        imaximo = 9;
-        jmaximo = 10;
-        for (int x1 = 9; x1 > 0; x1--) {
+        /*matriz = new int[9][10];
+        imaximo = 6;
+        jmaximo = 7;*/
+        for (int x1 = 7; x1 > 0; x1--) {
             g.fillOval((9 * 90) + 20, (x1 * 65) + 100, 60, 60);
         }
-        for (x = 0; x < 9; x++) {
+        for (x = 0; x < 6; x++) {
             for (y = 1; y < 10; y++) {
                 g.fillOval((x * 90) + 20, (y * 65) + 100, 60, 60);
                 matriz[x][y] = 0;
