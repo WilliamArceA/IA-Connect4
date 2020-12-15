@@ -26,19 +26,15 @@ public class Juego extends Frame implements MouseListener {
         PanelPrincipal.add(Empezar);
         PanelPrincipal.add(Salir);
         add(PanelPrincipal);
-        /*
-         * addWindowListener(new WindowAdapter() { public void cerrarVentana(WindowEvent
-         * we) { System.exit(0); } });
-         */
+
     }
 
     public void colocar(int columna) {
         Thread tiempo = new Thread();
         Graphics g = getGraphics();
-
         g.setColor(Color.red);
         int c = 0;
-        Random aleatorio = new Random();
+        Random aleatorio = new Random();/**/
         int r = aleatorio.nextInt(jmaximo);
         if (columna < jmaximo) {
             if (ganador == false) {
@@ -47,18 +43,34 @@ public class Juego extends Frame implements MouseListener {
                         matriz[imaximo - 1][columna] = 5;
                         g.fillOval(((columna) * 90) + 20, ((imaximo) * 65) + 100, 60, 60);
                         revision(5, imaximo - 1, columna);
-                        boolean empatados = verificarEmpate();
+
                         int b = encontradaPrioridad(5, imaximo - 1, columna);
-                        if (ganador != true) {
-                            if (prioridad == false) {
-                                TurnoMaquina(r);
-                            } else {
-                                if (hacer == true) {
-                                    if (matriz[ig][jg] == 0) {
-                                        TurnoMaquina(jg);
-                                        hacer = false;
-                                        ig = -3;
-                                        jg = -3;
+                        if (!verificarEmpate()) {
+                            mostrarMensaje("Empate");
+                            ganador = true;
+                        } else {
+                            if (ganador != true) {
+                                if (prioridad == false) {
+                                    TurnoMaquina(r);
+                                } else {
+                                    if (hacer == true) {
+                                        if (matriz[ig][jg] == 0) {
+                                            int debesjugar = jg;
+                                            ig = -3;
+                                            jg = -3;
+                                            hacer = false;
+                                            TurnoMaquina(debesjugar);
+
+                                        } else {
+                                            hacer = false;
+                                            ig = -3;
+                                            jg = -3;
+                                            if (b != -2) {
+                                                TurnoMaquina(b);
+                                            } else {
+                                                TurnoMaquina(r);
+                                            }
+                                        }
                                     } else {
                                         hacer = false;
                                         ig = -3;
@@ -69,26 +81,17 @@ public class Juego extends Frame implements MouseListener {
                                             TurnoMaquina(r);
                                         }
                                     }
-                                } else {
-                                    hacer = false;
-                                    ig = -3;
-                                    jg = -3;
-                                    if (b != -2) {
-                                        TurnoMaquina(b);
-                                    } else {
-                                        TurnoMaquina(r);
-                                    }
+                                }
+                            } else {
+
+                                mostrarMensaje("ganador persona");
+                                try {
+                                    tiempo.wait(1000);
+                                } catch (InterruptedException e) {
                                 }
                             }
-                        } else {
-
-                            mostrarMensaje("ganador persona");
-                            try {
-                                tiempo.wait(1000);
-                                // tiempo.sleep(1000);
-                            } catch (InterruptedException e) {
-                            }
                         }
+
                     } else {
                         while (matriz[c + 1][columna] == 0) {
                             c++;
@@ -97,16 +100,34 @@ public class Juego extends Frame implements MouseListener {
                         g.fillOval((columna * 90) + 20, ((c + 1) * 65) + 100, 60, 60);
                         revision(5, c, columna);
                         int b = encontradaPrioridad(5, c, columna);
-                        if (ganador != true) {
-                            if (prioridad == false) {
-                                TurnoMaquina(r);
-                            } else {
-                                if (hacer == true) {
-                                    if (matriz[ig][jg] == 0) {
-                                        TurnoMaquina(jg);
-                                        ig = -3;
-                                        jg = -3;
-                                        hacer = false;
+                        if (!verificarEmpate()) {
+                            mostrarMensaje("Empate");
+
+                            ganador = true;
+                        } else {
+                            if (ganador != true) {
+                                if (prioridad == false) {
+                                    TurnoMaquina(r);
+                                } else {
+                                    if (hacer == true) {
+                                        if (matriz[ig][jg] == 0) {
+
+                                            int debesjugar = jg;
+                                            ig = -3;
+                                            jg = -3;
+                                            hacer = false;
+                                            TurnoMaquina(debesjugar);
+
+                                        } else {
+                                            hacer = false;
+                                            ig = -3;
+                                            jg = -3;
+                                            if (b != -2) {
+                                                TurnoMaquina(b);
+                                            } else {
+                                                TurnoMaquina(r);
+                                            }
+                                        }
                                     } else {
                                         hacer = false;
                                         ig = -3;
@@ -117,26 +138,17 @@ public class Juego extends Frame implements MouseListener {
                                             TurnoMaquina(r);
                                         }
                                     }
-                                } else {
-                                    hacer = false;
-                                    ig = -3;
-                                    jg = -3;
-                                    if (b != -2) {
-                                        TurnoMaquina(b);
-                                    } else {
-                                        TurnoMaquina(r);
-                                    }
+                                }
+                            } else {
+                                mostrarMensaje("ganador persona");
+
+                                try {
+                                    tiempo.wait(1000);
+                                } catch (InterruptedException e) {
                                 }
                             }
-                        } else {
-                            mostrarMensaje("ganador persona");
-
-                            try {
-                                tiempo.wait(1000);
-                                // tiempo.sleep(1000);
-                            } catch (InterruptedException e) {
-                            }
                         }
+
                     }
                 } else {
 
@@ -167,17 +179,25 @@ public class Juego extends Frame implements MouseListener {
                     ig = imaximo - 1;
                     jg = encontradaPrioridad(4, imaximo - 1, columna);
                 }
-                if (ganador == true) {
 
-                    mostrarMensaje("ganador pc");
+                if (!verificarEmpate()) {
+                    mostrarMensaje("Empate");
 
-                    try {
-                        tiempo.wait(1000);
-                        // tiempo.sleep(1000);
-                    } catch (InterruptedException e) {
+                    ganador = true;
+                } else {
+                    if (ganador == true) {
+
+                        mostrarMensaje("ganador pc");
+    
+                        try {
+                            tiempo.wait(1000);
+                        } catch (InterruptedException e) {
+                        }
+    
                     }
-
                 }
+
+                
             } else {
                 while (matriz[c + 1][columna] == 0) {
                     c++;
@@ -190,15 +210,21 @@ public class Juego extends Frame implements MouseListener {
                     ig = c;
                     jg = encontradaPrioridad(4, c, columna);
                 }
-                if (ganador == true) {
-                    mostrarMensaje("ganador pc");
+                if (!verificarEmpate()) {
+                    ganador = true;
+                    mostrarMensaje("Empate");
+                } else {
 
-                    try {
-                        tiempo.wait(1000);
-                        // tiempo.sleep(1000);
-                    } catch (InterruptedException e) {
+                    if (ganador == true) {
+                        mostrarMensaje("ganador pc");
+    
+                        try {
+                            tiempo.wait(1000);
+                        } catch (InterruptedException e) {
+                        }
                     }
                 }
+                
             }
         } else {
             if (columna == imaximo - 1) {
@@ -345,11 +371,11 @@ public class Juego extends Frame implements MouseListener {
     public void mousePressed(MouseEvent me) {
         int z;
         z = me.getX();
-        if ((ganador != true)&&(me.getSource() != Salir)) {
+        if ((ganador != true) && (me.getSource() != Salir)) {
             z = (z - 10) / 90;
             colocar(z);
         } else {
-            if ((me.getSource() != Empezar)&&(me.getSource() != Salir)) {
+            if ((me.getSource() != Empezar) && (me.getSource() != Salir)) {
 
                 mostrarMensaje("Ya hay un ganador para este tablero, inicie otro por favor");
 
