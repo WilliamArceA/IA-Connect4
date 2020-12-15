@@ -7,5 +7,6 @@ public class App {
         a.setSize(640,680);
         a.setResizable(false);
         a.setVisible(true);
+        a.setLocationRelativeTo(null);
     }
 }
