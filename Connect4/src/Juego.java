@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Juego extends Frame implements MouseListener {
     private static final long serialVersionUID = 1L;
@@ -12,6 +13,8 @@ public class Juego extends Frame implements MouseListener {
     boolean inicioDelJuego = false;
     int[][] matriz;
     boolean ganador = false, prioridad = false, hacer = false, empate = false;
+    ArrayList<Integer> prioridadesEnI = new ArrayList<Integer>();
+    ArrayList<Integer> prioridadesEnJ = new ArrayList<Integer>();
     int ig, jg;
     Panel PanelPrincipal = new Panel();
 
@@ -188,16 +191,15 @@ public class Juego extends Frame implements MouseListener {
                     if (ganador == true) {
 
                         mostrarMensaje("ganador pc");
-    
+
                         try {
                             tiempo.wait(1000);
                         } catch (InterruptedException e) {
                         }
-    
+
                     }
                 }
 
-                
             } else {
                 while (matriz[c + 1][columna] == 0) {
                     c++;
@@ -206,6 +208,7 @@ public class Juego extends Frame implements MouseListener {
                 g.fillOval((columna * 90) + 20, ((c + 1) * 65) + 100, 60, 60);
                 revision(4, c, columna);
                 if (encontradaPrioridad(4, c, columna) != -2) {
+
                     hacer = true;
                     ig = c;
                     jg = encontradaPrioridad(4, c, columna);
@@ -217,14 +220,14 @@ public class Juego extends Frame implements MouseListener {
 
                     if (ganador == true) {
                         mostrarMensaje("ganador pc");
-    
+
                         try {
                             tiempo.wait(1000);
                         } catch (InterruptedException e) {
                         }
                     }
                 }
-                
+
             }
         } else {
             if (columna == imaximo - 1) {
@@ -1196,6 +1199,43 @@ public class Juego extends Frame implements MouseListener {
                 encontrado = true;
             }
         }
+
+        if (((j1 + 2) < imaximo) && (!encontrado)) 
+        {
+            if (((matriz[i1][j1 + 1] + rev1) == 2 * rev1)) {
+                if (matriz[i1][j1 + 2] == 0) {
+                    if ((i1 + 1) < imaximo) {
+                        if (matriz[i1 + 1][j1 + 2] != 0) {
+                            res = j1 + 2;
+                            encontrado = true;
+                        }
+                    } else {
+                        res = j1 + 2;
+                        encontrado = true;
+                    }
+                }
+            }
+    
+        }
+        
+        if (((j1 - 2) > -1) && (!encontrado)) {
+
+            if (((matriz[i1][j1 - 1] + rev1) == 2 * rev1)) {
+                if (matriz[i1][j1 - 2] == 0) {
+                    if ((i1 + 1) < imaximo) {
+                        if (matriz[i1 + 1][j1 - 2] != 0) {
+                            res = j1 - 2;
+                            encontrado = true;
+                        }
+                    } else {
+                        res = j1 - 2;
+                        encontrado = true;
+                    }
+                }
+            }
+
+        }
+
         return res;
     }
 
