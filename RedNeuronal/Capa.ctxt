@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Capa
+comment1.params=azar\ totalNeuronas\ totalEntradas
+comment1.target=Capa(java.util.Random,\ int,\ int)
+comment2.params=entradas
+comment2.target=void\ CalculaCapa(java.util.ArrayList)
+comment3.params=
+comment3.target=void\ Actualiza()
+numComments=4
