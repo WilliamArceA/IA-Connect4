@@ -1,73 +1,99 @@
-import java.util.Random;
-import java.util.ArrayList;
-
-public class Programa
-{
-    public static void main (String[] args){
-        int[][] relojEntrada = {{1,1,1,0,1,1,1},
-                                 {0,0,1,0,0,1,0},
-                                 {1,0,1,1,1,0,1},
-                                 {1,0,1,1,0,1,1},
-                                 {0,1,1,1,0,1,0},
-                                 {1,1,0,1,0,1,1},
-                                 {1,1,0,1,1,1,1},
-                                 {1,0,1,0,0,1,0},
-                                 {1,1,1,1,1,1,1},
-                                 {1,1,1,1,0,1,1}};
-        int[][] numeroEsperado = {{0,0,0,0},
-                                  {0,0,0,1},
-                                  {0,0,1,0},
-                                  {0,0,1,1},
-                                  {0,1,0,0},
-                                  {0,1,0,1},
-                                  {0,1,1,0},
-                                  {0,1,1,1},
-                                  {1,0,0,0},
-                                  {1,0,0,1}}; 
-        int numEntradas=7;
+    import java.util.Random;
+    import java.util.ArrayList;
+    import java.util.Scanner;
+   
+    
+    public class Programa
+    {
+        public static void main (String[] args){
+        int[][] relojEntrada = {{0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 2, 0, 0, 0, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 2, 0, 0, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 2, 0, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 2, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 2, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 2}};
+        int[][] numeroEsperado = {{1, 0, 0},
+                                  {1, 0, 0},
+                                  {1, 0, 0},
+                                  {1, 0, 0},
+                                  {1, 0, 0},
+                                  {1, 0, 0},
+                                  {1, 0, 0}}; //el valor es 4 en binario (coloca en el centro)
+        int numEntradas=42;
         int capa0=5;
         int capa1=5;
-        int capa2=4;
+        int capa2=3;
+        int numSalidas=3;
         Perceptron perceptron=new Perceptron(numEntradas, capa0, capa1, capa2);
         
         //Entradas externas al perceptron
         ArrayList<Double> entradas=new ArrayList<Double>();
-        entradas.add(0.0);
-        entradas.add(0.0);
-        entradas.add(0.0);
-        entradas.add(0.0);
-        entradas.add(0.0);
-        entradas.add(0.0);
-        entradas.add(0.0);
+        for(int i=0;i<numEntradas;i++){
+            entradas.add(0.0);
+        }
         
         //Salidas esperadas externas al perceptron
         ArrayList<Double> salidaEsperada=new ArrayList<Double>();
-        salidaEsperada.add(0.0);
-        salidaEsperada.add(0.0);
-        salidaEsperada.add(0.0);
-        salidaEsperada.add(0.0);
+        for (int i=0;i<numSalidas;i++){
+            salidaEsperada.add(0.0);
+        }
         
         //Ciclo que entrena a la red neuronal
-        int totalCiclos = 8000; //existen redes neuronales para calcular cuantos cilos son necesarios xd
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Introduzca cuantas iteraciones: ");
+        int totalCiclos = sc.nextInt(); //existen redes neuronales para calcular cuantos cilos son necesarios xd
+        System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
+        int m=sc.nextInt();
         for (int ciclo=1;ciclo<=totalCiclos;ciclo++){
             //Por cada ciclo, se entrena el perceptron con todos los numeros
             //Cada 200 ciclos mostramos como progresa el entrenamiento
-            if (ciclo%200==0) System.out.println("Ciclo: "+ciclo);
+            if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
             
-            for (int i=0;i<relojEntrada[0].length;i++){
+            for (int i=0;i<relojEntrada.length;i++){
                 //Entradas y salidas esperadas
-                entradas.set(0, Double.valueOf(relojEntrada[i][0]));
-                entradas.set(1, Double.valueOf(relojEntrada[i][1]));
-                entradas.set(2, Double.valueOf(relojEntrada[i][2]));
-                entradas.set(3, Double.valueOf(relojEntrada[i][3]));
-                entradas.set(4, Double.valueOf(relojEntrada[i][4]));
-                entradas.set(5, Double.valueOf(relojEntrada[i][5]));
-                entradas.set(6, Double.valueOf(relojEntrada[i][6]));
+                for(int j=0;j<numEntradas;j++){
+                    entradas.set(j, Double.valueOf(relojEntrada[i][j]));
+                }
                 
-                salidaEsperada.set(0, Double.valueOf(numeroEsperado[i][0]));
-                salidaEsperada.set(1, Double.valueOf(numeroEsperado[i][1]));
-                salidaEsperada.set(2, Double.valueOf(numeroEsperado[i][2]));
-                salidaEsperada.set(3, Double.valueOf(numeroEsperado[i][3]));
+                for(int j=0;j<numSalidas;j++){
+                    salidaEsperada.set(j, Double.valueOf(numeroEsperado[i][j]));
+                }
                 
                 //Primero calcula la salida del perceptron con esas entradas
                 perceptron.calculaSalida(entradas);
@@ -76,7 +102,20 @@ public class Programa
                 perceptron.Entrena(entradas, salidaEsperada);
                 
                 //Cada 200 ciclos muestra como progresa el entrenamiento
-                if (ciclo%200==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
+                if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
+            }
+        }
+        
+        perceptron.SalidaPerceptron(entradas, salidaEsperada);
+        
+        for (int i=0;i<perceptron.capas.size();i++){
+            System.out.println("Capa "+i+": ");
+            for(int j=0;j<perceptron.capas.get(i).neuronas.size();j++){
+                System.out.println("    Neurona "+j+": ");
+                for(int k=0;k<perceptron.capas.get(i).neuronas.get(j).pesos.size();k++){
+                    System.out.println("        Peso "+k+"="+perceptron.capas.get(i).neuronas.get(j).pesos.get(k));
+                }
+                System.out.println("        Umbral "+j+"="+perceptron.capas.get(i).neuronas.get(j).umbral);
             }
         }
         

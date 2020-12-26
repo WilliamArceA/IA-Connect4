@@ -2,11 +2,11 @@
 dependency1.from=Capa
 dependency1.to=Neurona
 dependency1.type=UsesDependency
-dependency2.from=Programa
-dependency2.to=Perceptron
+dependency2.from=Perceptron
+dependency2.to=Capa
 dependency2.type=UsesDependency
-dependency3.from=Perceptron
-dependency3.to=Capa
+dependency3.from=Programa
+dependency3.to=Perceptron
 dependency3.type=UsesDependency
 editor.fx.0.height=744
 editor.fx.0.width=1382
