@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Neurona
+comment1.params=azar\ totalEntradas
+comment1.target=Neurona(java.util.Random,\ int)
+comment2.params=entradas
+comment2.target=double\ calculaSalida(java.util.ArrayList)
+comment3.params=
+comment3.target=void\ Actualiza()
+numComments=4
