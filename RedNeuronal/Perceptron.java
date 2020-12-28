@@ -8,7 +8,7 @@ public class Perceptron
     //Imprime los datos de las diferentes capas
     public void SalidaPerceptron(ArrayList<Double> entradas, ArrayList<Double> salidaEsperada){
         for (int i=0;i<entradas.size();i++){
-            System.out.print(String.format("%.0f", entradas.get(i))+" ");
+            System.out.print(String.format("%.0f", (entradas.get(i)*2))+" ");
         }
         System.out.print("Esperada: ");
         for (int i=0;i<salidaEsperada.size();i++){
