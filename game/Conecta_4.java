@@ -36,10 +36,7 @@ public class Conecta_4 {
                     if(jugadaPosible)
                     {
                         jugadaPosible = verificarColumnaLlena(columna,tablero);
-                        if(jugadaPosible)
-                        {
-                            jugadaPosible = verificarColumnaLlena(columna,tablero);
-                        }else
+                        if(!jugadaPosible)
                         {
                             System.out.println("Columna llena");
                             System.out.println();
