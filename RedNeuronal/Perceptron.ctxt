@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Perceptron
+comment1.params=entradas\ salidaEsperada
+comment1.target=void\ SalidaPerceptron(java.util.ArrayList,\ java.util.ArrayList)
+comment2.params=numEntrada\ capa0\ capa1\ capa2
+comment2.target=Perceptron(int,\ int,\ int,\ int)
+comment3.params=entradas
+comment3.target=void\ calculaSalida(java.util.ArrayList)
+comment4.params=entradas\ salidaEsperada
+comment4.target=void\ Entrena(java.util.ArrayList,\ java.util.ArrayList)
+numComments=5
