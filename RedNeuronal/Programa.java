@@ -165,7 +165,7 @@
             for (int i=0;i<tableroEntrada.length;i++){
                 //Entradas y salidas esperadas
                 for(int j=0;j<numEntradas;j++){
-                    entradas.set(j, (double)(tableroEntrada[i][j]/2));
+                    entradas.set(j, (double)((double)(tableroEntrada[i][j])/2));
                 }
                 
                 for(int j=0;j<numSalidas;j++){
@@ -182,7 +182,7 @@
                 if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
             }
         }
-        /*
+        
         perceptron.SalidaPerceptron(entradas, salidaEsperada);
         
         for (int i=0;i<perceptron.capas.size();i++){
@@ -195,7 +195,7 @@
                 System.out.println("        Umbral "+j+"="+perceptron.capas.get(i).neuronas.get(j).umbral);
             }
         }
-        */
+        
         System.out.println ("Finaliza");
         
         
