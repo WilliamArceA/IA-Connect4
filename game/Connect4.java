@@ -35,7 +35,7 @@ public class Connect4 {
 			
 			//drop the checker
 			for (int row = grid.length-1; row >= 0; row--){
-				if(grid[row][play] == ' '){
+				if(grid[row][play] == 0){
 					grid[row][play] = player;
 					break;
 				}
@@ -90,7 +90,7 @@ public class Connect4 {
 		}
 		
 		//full column?
-		if (grid[0][column] != ' '){
+		if (grid[0][column] != 0){
 			return false;
 		}
 		
