@@ -3,9 +3,12 @@
     import java.util.Scanner;
    
     
+    
     public class Programa
     {
-        public static void main (String[] args){
+        public Perceptron perceptron;
+        
+        public void ComienzaAprendizaje (){
         int[][] tableroEntrada = {{0, 0, 0, 0, 0, 0, 0,
                                  0, 0, 0, 0, 0, 0, 0,
                                  0, 0, 0, 0, 0, 0, 0,
@@ -136,8 +139,7 @@
         int capa0=20;
         int capa1=10;
         int capa2=3;
-        int numSalidas=3;
-        Perceptron perceptron=new Perceptron(numEntradas, capa0, capa1, capa2);
+        perceptron=new Perceptron(numEntradas, capa0, capa1, capa2);
         
         //Entradas externas al perceptron
         ArrayList<Double> entradas=new ArrayList<Double>();
@@ -147,7 +149,7 @@
         
         //Salidas esperadas externas al perceptron
         ArrayList<Double> salidaEsperada=new ArrayList<Double>();
-        for (int i=0;i<numSalidas;i++){
+        for (int i=0;i<capa2;i++){
             salidaEsperada.add(0.0);
         }
         
@@ -155,12 +157,11 @@
         Scanner sc=new Scanner(System.in);
         System.out.println("Introduzca cuantas iteraciones: ");
         int totalCiclos = sc.nextInt(); //existen redes neuronales para calcular cuantos cilos son necesarios xd
-        System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
-        int m=sc.nextInt();
+        //System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
+        //int m=sc.nextInt();
         for (int ciclo=1;ciclo<=totalCiclos;ciclo++){
             //Por cada ciclo, se entrena el perceptron con todos los numeros
-            //Cada 200 ciclos mostramos como progresa el entrenamiento
-            if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
+            //if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
             
             for (int i=0;i<tableroEntrada.length;i++){
                 //Entradas y salidas esperadas
@@ -168,7 +169,7 @@
                     entradas.set(j, (double)((double)(tableroEntrada[i][j])/2));
                 }
                 
-                for(int j=0;j<numSalidas;j++){
+                for(int j=0;j<capa2;j++){
                     salidaEsperada.set(j, (double)(numeroEsperado[i][j]));
                 }
                 
@@ -178,12 +179,11 @@
                 //Luego entrena el perceptron para ajustar los pesos y umbrales
                 perceptron.Entrena(entradas, salidaEsperada);
                 
-                //Cada 200 ciclos muestra como progresa el entrenamiento
-                if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
+                //if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
             }
         }
         
-        perceptron.SalidaPerceptron(entradas, salidaEsperada);
+        /*perceptron.SalidaPerceptron(entradas, salidaEsperada);
         
         for (int i=0;i<perceptron.capas.size();i++){
             System.out.println("Capa "+i+": ");
@@ -195,8 +195,8 @@
                 System.out.println("        Umbral "+j+"="+perceptron.capas.get(i).neuronas.get(j).umbral);
             }
         }
-        
-        System.out.println ("Finaliza");
+        */
+        //System.out.println ("Finaliza");
         
         
     }

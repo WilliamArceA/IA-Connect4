@@ -1,147 +1,313 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Connect4 {
 
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
-		
-		int[][] grid = new int[6][7];
-		
-		//initialize array
-		for (int row = 0; row < grid.length; row++){
-			for (int col = 0; col < grid[0].length; col++){
-				grid[row][col] =0;
-			}
-		}
-		
-		int turn = 1;
-		int player = 1;
-		boolean winner = false;		
-		
-		//play a turn
-		while (winner == false && turn <= 42){
-			boolean validPlay;
-			int play;
-			do {
-				display(grid);
-				
-				System.out.print("Player " + player + ", choose a column: ");
-				play = in.nextInt();
-				
-				//validate play
-				validPlay = validate(play,grid);
-				
-			}while (validPlay == false);
-			
-			//drop the checker
-			for (int row = grid.length-1; row >= 0; row--){
-				if(grid[row][play] == 0){
-					grid[row][play] = player;
-					break;
-				}
-			}
-			
-			//determine if there is a winner
-			winner = isWinner(player,grid);
-			
-			//switch players
-			if (player == 1){
-				player = 2;
-			}else{
-				player = 1;
-			}
-			
-			turn++;			
-		}
-		display(grid);
-		
-		if (winner){
-			if (player==1){
-				System.out.println("Human won");
-			}else{
-				System.out.println("Machine won");
-			}
-		}else{
-			System.out.println("Tie game");
-		}
-		
-	}
-	
-	public static void display(int[][] grid){
-		System.out.println(" 0 1 2 3 4 5 6");
-		System.out.println("---------------");
-		for (int row = 0; row < grid.length; row++){
-			System.out.print("|");
-			for (int col = 0; col < grid[0].length; col++){
-				System.out.print(grid[row][col]);
-				System.out.print("|");
-			}
-			System.out.println();
-			System.out.println("---------------");
-		}
-		System.out.println(" 0 1 2 3 4 5 6");
-		System.out.println();
-	}
-	
-	public static boolean validate(int column, int[][] grid){
-		//valid column?
-		if (column < 0 || column > grid[0].length){
-			return false;
-		}
-		
-		//full column?
-		if (grid[0][column] != 0){
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public static boolean isWinner(int player, int[][] grid){
-		//check for 4 across
-		for(int row = 0; row<grid.length; row++){
-			for (int col = 0;col < grid[0].length - 3;col++){
-				if (grid[row][col] == player   && 
-					grid[row][col+1] == player &&
-					grid[row][col+2] == player &&
-					grid[row][col+3] == player){
-					return true;
-				}
-			}			
-		}
-		//check for 4 up and down
-		for(int row = 0; row < grid.length - 3; row++){
-			for(int col = 0; col < grid[0].length; col++){
-				if (grid[row][col] == player   && 
-					grid[row+1][col] == player &&
-					grid[row+2][col] == player &&
-					grid[row+3][col] == player){
-					return true;
-				}
-			}
-		}
-		//check upward diagonal
-		for(int row = 3; row < grid.length; row++){
-			for(int col = 0; col < grid[0].length - 3; col++){
-				if (grid[row][col] == player   && 
-					grid[row-1][col+1] == player &&
-					grid[row-2][col+2] == player &&
-					grid[row-3][col+3] == player){
-					return true;
-				}
-			}
-		}
-		//check downward diagonal
-		for(int row = 0; row < grid.length - 3; row++){
-			for(int col = 0; col < grid[0].length - 3; col++){
-				if (grid[row][col] == player   && 
-					grid[row+1][col+1] == player &&
-					grid[row+2][col+2] == player &&
-					grid[row+3][col+3] == player){
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    public static void main(String[] args) {
+        
+        Programa red= new Programa();
+        red.ComienzaAprendizaje();
+        ArrayList<Double> entradas=new ArrayList<Double>();
+        for(int i=0;i<42;i++){
+            entradas.add(0.0);
+        }
+        
+        imprimirPresentacion();
+
+        Scanner valorIngresado = new Scanner(System.in);
+
+        int[][] tablero = cargar();
+        int jugadorActual = 1;
+        boolean hayGanador = false; 
+        boolean juegoCancelado = false;
+        
+        
+
+        while ((!hayGanador)&&(tableroJugable(tablero)))
+        {
+            boolean jugadaPosible=false;;
+            int columna=-1;
+            while ((!jugadaPosible))
+            {
+                mostrar(tablero);
+                if(jugadorActual==1){
+                    int cont=0;
+                    for (int i=0;i<tablero.length;i++){
+                        for (int j=0;j<tablero[0].length;j++){
+                            entradas.set(cont,((double)(tablero[i][j]))/2);
+                            cont++;
+                        }
+                    }
+                    red.perceptron.calculaSalida(entradas);
+                    StringBuilder resIA = new StringBuilder();
+                    for (int i=0;i<red.perceptron.capas.get(2).salidas.size();i++){
+                        if (red.perceptron.capas.get(2).salidas.get(i)>=0.5) resIA.append("1");
+                        else resIA.append("0");
+                    }
+                    switch (resIA.toString()){
+                        case "001":
+                            columna=1;
+                            break;
+                        case "010":
+                            columna=2;
+                            break;
+                        case "011":
+                            columna=3;
+                            break;
+                        case "100":
+                            columna=4;
+                            break;
+                        case "101":
+                            columna=5;
+                            break;
+                        case "110":
+                            columna=6;
+                            break;
+                        case "111":
+                            columna=7;
+                            break;
+                    }
+                }else{
+                    System.out.print("Es su turno, por favor ingrese la columna");
+                    columna = valorIngresado.nextInt();
+                }
+                if(columna==9)
+                {
+                    System.out.print("Juego Cancelado");
+                    juegoCancelado=true;
+                    jugadaPosible = true;
+                    hayGanador=true;
+                }
+                else
+                {
+                    columna--;
+                    jugadaPosible = verificarColumnaExistente(columna,tablero);
+                    if(jugadaPosible)
+                    {
+                        jugadaPosible = verificarColumnaLlena(columna,tablero);
+                        if(jugadaPosible)
+                        {
+                            jugadaPosible = verificarColumnaLlena(columna,tablero);
+                        }else
+                        {
+                            System.out.println("Columna llena");
+                            System.out.println();
+                        }
+                    }else
+                    {
+                        System.out.println("Esa columna no existe");
+                        System.out.println();
+                    }
+                }
+            }
+            if(!juegoCancelado)
+            {
+                tablero = colocar(columna,jugadorActual, tablero);
+
+                hayGanador = buscarGanador(jugadorActual,tablero);
+
+                jugadorActual = cambioDeTurno(jugadorActual); 
+
+                mostrar(tablero);
+            }
+
+        }
+
+        if(!juegoCancelado)
+        { 
+            imprimirResultadoJuego(hayGanador,jugadorActual);
+        }
+
+    }
+
+    private static void imprimirResultadoJuego(boolean hayGanador,int jugadorActual)
+    {
+        if (hayGanador)
+        {
+            if (jugadorActual==1)
+            {
+                System.out.println("Felicitaciones jugador número 2, ganó el juego");
+            }else{
+                System.out.println("Felicitaciones jugador número 1, ganó el juego");
+            }
+        }else{
+            System.out.println("Los jugadores empataron");
+        }
+    }
+
+    private static int cambioDeTurno(int jugadorActual)
+    {
+        if (jugadorActual == 1)
+        {
+            jugadorActual = 2;
+        }else{
+            jugadorActual = 1;
+        }
+        return jugadorActual;
+    }
+
+    private static int[][] cargar()
+    {
+        int[][] tablero  = new int[6][7];
+
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j <7; j++)
+            {
+                tablero[i][j] = 0;
+            }
+        }
+
+        return tablero;
+    }
+
+    private static int[][] colocar(int columna, int jugadorActual, int[][] tablero)
+    {
+
+        for (int j = tablero.length-1; j >= 0; j--)
+        {
+            if(tablero[j][columna] == 0)
+            {
+                tablero[j][columna] = jugadorActual;
+                break;
+            }
+        }
+        return tablero;
+    }
+
+    private static void imprimirPresentacion()
+    {
+        System.out.print("\f");
+        System.out.println("Juego de Conecta Cuatro");
+        System.out.println("Este juego tiene un tablero de 6x7");
+        System.out.println("Para jugar solamente ingrese el número de la colummna donde quiere jugar");
+        System.out.println("Si ingresa 9, el juego se cancelará");
+        System.out.println();
+    }
+
+    private static void mostrar(int[][] tablero){
+        System.out.println();
+        System.out.println("Estado Actual del tablero: ");
+        System.out.println();
+        System.out.println();
+        System.out.println("_______________");
+        for (int i = 0; i < tablero.length; i++)
+        {
+            System.out.print("|");
+            for (int j = 0; j < tablero[0].length; j++)
+            {
+                System.out.print(tablero[i][j]);
+                System.out.print("|");
+            }
+            System.out.println();
+            System.out.println("_______________");
+        }
+        System.out.println();
+        System.out.println(" 1 2 3 4 5 6 7");
+        System.out.println();
+    }
+
+    private static boolean tableroJugable(int[][] tablero){
+        boolean aunJugable=false;
+        for (int i = 0; i < tablero.length; i++)
+        {
+
+            for (int j = 0; j < tablero[0].length; j++)
+            {
+                if((tablero[i][j]==0)&&(!aunJugable))
+                {
+                    aunJugable=true;
+                }
+
+            }
+
+        }
+        return aunJugable;
+    }
+
+    private static boolean verificarColumnaExistente(int j, int[][] tablero)
+    {
+        boolean respuesta=true;
+
+        if (j < 0 || j > 6)
+        {
+            respuesta = false;
+        }
+
+        return respuesta;
+    }
+
+    private static boolean verificarColumnaLlena(int j, int[][] tablero)
+    {
+        boolean respuesta=true;      
+
+        if (tablero[0][j] != 0)
+        {
+            respuesta = false;
+        }
+
+        return respuesta;
+    }
+
+    private static boolean buscarGanador(int jugadorActual, int[][] tablero)
+    {
+
+        for(int i = 0; i < tablero.length - 3; i++)
+        {
+            for(int j = 0; j < tablero[0].length; j++)
+            {
+                if (
+                tablero[i][j] == jugadorActual   && 
+                tablero[i+1][j] == jugadorActual &&
+                tablero[i+2][j] == jugadorActual &&
+                tablero[i+3][j] == jugadorActual){
+                    return true;
+                }
+            }
+        }
+
+        for(int i = 0; i < tablero.length - 3; i++)
+        {
+            for(int j = 0; j < tablero[0].length - 3; j++)
+            {
+                if (
+                tablero[i][j] == jugadorActual   && 
+                tablero[i+1][j+1] == jugadorActual &&
+                tablero[i+2][j+2] == jugadorActual &&
+                tablero[i+3][j+3] == jugadorActual){
+                    return true;
+                }
+            }
+        }
+
+        for(int i = 3; i < tablero.length; i++)
+        {
+            for(int j = 0; j < tablero[0].length - 3; j++)
+            {
+                if (
+                tablero[i][j] == jugadorActual   && 
+                tablero[i-1][j+1] == jugadorActual &&
+                tablero[i-2][j+2] == jugadorActual &&
+                tablero[i-3][j+3] == jugadorActual){
+                    return true;
+                }
+            }
+        }
+
+        for(int i = 0; i<tablero.length; i++)
+        {
+            for (int j = 0;j < tablero[0].length - 3;j++)
+            {
+                if (
+                tablero[i][j] == jugadorActual && 
+                tablero[i][j+1] == jugadorActual &&
+                tablero[i][j+2] == jugadorActual &&
+                tablero[i][j+3] == jugadorActual)
+                {
+                    return true;
+                }
+            }           
+        }
+        return false;
+    }
 }
