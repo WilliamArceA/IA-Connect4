@@ -66,6 +66,8 @@ public class Connect4 {
                         case "111":
                             columna=7;
                             break;
+                        default:
+                            columna=(int)(Math.random()*7)+1;
                     }
                 }else{
                     System.out.print("Es su turno, por favor ingrese la columna");
@@ -90,8 +92,15 @@ public class Connect4 {
                             jugadaPosible = verificarColumnaLlena(columna,tablero);
                         }else
                         {
-                            System.out.println("Columna llena");
-                            System.out.println();
+                            if (jugadorActual==1){
+                                while(!jugadaPosible){
+                                    columna=(int)(Math.random()*7)+1;
+                                    jugadaPosible = verificarColumnaLlena(columna,tablero);
+                                }
+                            }else{
+                                System.out.println("Columna llena");
+                                System.out.println();
+                            }
                         }
                     }else
                     {

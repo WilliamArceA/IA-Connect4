@@ -116,7 +116,79 @@
                                  0, 0, 0, 1, 2, 2, 0,
                                  0, 0, 0, 1, 1, 1, 2,
                                  0, 0, 0, 2, 1, 2, 1,
-                                 2, 0, 0, 1, 2, 1, 1}};
+                                 2, 0, 0, 1, 2, 1, 1},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 1,
+                                 0, 0, 2, 2, 1, 0, 2,
+                                 0, 0, 1, 1, 1, 2, 1,
+                                 0, 0, 2, 1, 2, 2, 1,
+                                 0, 0, 2, 1, 2, 2, 1},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 1, 0, 0, 0,
+                                 0, 0, 0, 2, 0, 0, 0,
+                                 0, 0, 0, 1, 0, 1, 0,
+                                 0, 2, 2, 1, 0, 2, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 1, 0, 0, 0,
+                                 0, 0, 0, 2, 0, 0, 0,
+                                 0, 0, 1, 1, 0, 1, 0,
+                                 0, 2, 2, 1, 2, 2, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 2, 0, 0, 0, 0, 0,
+                                 0, 2, 0, 1, 0, 0, 0,
+                                 0, 2, 1, 1, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 2, 0, 0, 0,
+                                 0, 0, 0, 1, 0, 0, 0,
+                                 2, 0, 0, 1, 0, 0, 0,
+                                 2, 0, 0, 1, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 2, 0, 0, 0,
+                                 1, 0, 0, 1, 0, 0, 0,
+                                 2, 0, 0, 1, 0, 0, 0,
+                                 2, 0, 2, 1, 0, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 2, 0, 0, 0,
+                                 1, 0, 0, 1, 0, 0, 0,
+                                 2, 0, 2, 1, 0, 0, 0,
+                                 2, 0, 2, 1, 1, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 2, 2, 0, 0, 0,
+                                 1, 0, 1, 1, 0, 0, 0,
+                                 2, 0, 2, 1, 0, 0, 0,
+                                 2, 0, 2, 1, 1, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 2, 2, 0, 0, 0,
+                                 1, 0, 1, 1, 0, 0, 0,
+                                 2, 2, 2, 1, 0, 0, 0,
+                                 2, 1, 2, 1, 1, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 1, 2, 0, 1, 0, 0,
+                                 0, 2, 1, 2, 2, 1, 0,
+                                 2, 2, 1, 1, 1, 2, 0,
+                                 2, 1, 1, 1, 2, 2, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 2, 0, 0, 0, 0,
+                                 0, 0, 1, 2, 0, 0, 0,
+                                 0, 0, 1, 1, 2, 0, 0,
+                                 2, 0, 1, 1, 2, 0, 0},
+                                {0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 0, 0, 0, 0,
+                                 0, 0, 0, 1, 0, 0, 0,
+                                 0, 0, 2, 2, 1, 0, 0,
+                                 0, 0, 2, 1, 1, 2, 0,
+                                 0, 1, 2, 1, 2, 2, 1}};
         int[][] numeroEsperado = {{1, 0, 0},
                                   {1, 0, 0},
                                   {0, 1, 1},
@@ -134,10 +206,22 @@
                                   {1, 1, 0},
                                   {1, 1, 0},
                                   {1, 1, 1},
-                                  {1, 1, 1}}; //el valor es 4 en binario (coloca en el centro)
+                                  {1, 1, 1},
+                                  {1, 1, 0},
+                                  {0, 1, 1},
+                                  {1, 0, 1},
+                                  {0, 1, 0},
+                                  {0, 0, 1},
+                                  {1, 0, 1},
+                                  {0, 1, 1},
+                                  {0, 1, 0},
+                                  {0, 1, 0},
+                                  {0, 0, 1},
+                                  {1, 1, 0},
+                                  {0, 1, 1}}; //el valor es 4 en binario (coloca en el centro)
         int numEntradas=42;
-        int capa0=20;
-        int capa1=10;
+        int capa0=29;
+        int capa1=19;
         int capa2=3;
         perceptron=new Perceptron(numEntradas, capa0, capa1, capa2);
         
@@ -157,11 +241,11 @@
         Scanner sc=new Scanner(System.in);
         System.out.println("Introduzca cuantas iteraciones: ");
         int totalCiclos = sc.nextInt(); //existen redes neuronales para calcular cuantos cilos son necesarios xd
-        //System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
-        //int m=sc.nextInt();
+        System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
+        int m=sc.nextInt();
         for (int ciclo=1;ciclo<=totalCiclos;ciclo++){
             //Por cada ciclo, se entrena el perceptron con todos los numeros
-            //if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
+            if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
             
             for (int i=0;i<tableroEntrada.length;i++){
                 //Entradas y salidas esperadas
@@ -179,7 +263,7 @@
                 //Luego entrena el perceptron para ajustar los pesos y umbrales
                 perceptron.Entrena(entradas, salidaEsperada);
                 
-                //if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
+                if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
             }
         }
         
