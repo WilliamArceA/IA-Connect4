@@ -43,7 +43,7 @@ public class Perceptron
         int capa2=capas.get(2).neuronas.size();
         
         //Factor de aprendizaje
-        double alpha=0.5;
+        double alpha=0.4;
         
         //Procesa pesos capa 2
         for (int j=0;j<capa1;j++){

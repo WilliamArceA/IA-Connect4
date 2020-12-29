@@ -94,7 +94,7 @@ public class Connect4 {
                         {
                             if (jugadorActual==1){
                                 while(!jugadaPosible){
-                                    columna=(int)(Math.random()*7)+1;
+                                    columna=(int)(Math.random()*6);
                                     jugadaPosible = verificarColumnaLlena(columna,tablero);
                                 }
                             }else{

@@ -220,8 +220,8 @@
                                   {1, 1, 0},
                                   {0, 1, 1}}; //el valor es 4 en binario (coloca en el centro)
         int numEntradas=42;
-        int capa0=29;
-        int capa1=19;
+        int capa0=25;
+        int capa1=13;
         int capa2=3;
         perceptron=new Perceptron(numEntradas, capa0, capa1, capa2);
         
@@ -241,11 +241,11 @@
         Scanner sc=new Scanner(System.in);
         System.out.println("Introduzca cuantas iteraciones: ");
         int totalCiclos = sc.nextInt(); //existen redes neuronales para calcular cuantos cilos son necesarios xd
-        System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
-        int m=sc.nextInt();
+        //System.out.println("Cada cuantas iteraciones desea revisar el aprendizaje: ");
+        //int m=sc.nextInt();
         for (int ciclo=1;ciclo<=totalCiclos;ciclo++){
             //Por cada ciclo, se entrena el perceptron con todos los numeros
-            if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
+            //if (ciclo%m==0) System.out.println("Ciclo: "+ciclo);
             
             for (int i=0;i<tableroEntrada.length;i++){
                 //Entradas y salidas esperadas
@@ -263,25 +263,8 @@
                 //Luego entrena el perceptron para ajustar los pesos y umbrales
                 perceptron.Entrena(entradas, salidaEsperada);
                 
-                if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
+                //if (ciclo%m==0) perceptron.SalidaPerceptron(entradas, salidaEsperada);
             }
         }
-        
-        /*perceptron.SalidaPerceptron(entradas, salidaEsperada);
-        
-        for (int i=0;i<perceptron.capas.size();i++){
-            System.out.println("Capa "+i+": ");
-            for(int j=0;j<perceptron.capas.get(i).neuronas.size();j++){
-                System.out.println("    Neurona "+j+": ");
-                for(int k=0;k<perceptron.capas.get(i).neuronas.get(j).pesos.size();k++){
-                    System.out.println("        Peso "+k+"="+perceptron.capas.get(i).neuronas.get(j).pesos.get(k));
-                }
-                System.out.println("        Umbral "+j+"="+perceptron.capas.get(i).neuronas.get(j).umbral);
-            }
-        }
-        */
-        //System.out.println ("Finaliza");
-        
-        
     }
 }
